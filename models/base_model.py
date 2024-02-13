@@ -34,3 +34,4 @@ class BaseModel:
         mydict["updated_at"] = self.updated_at.isoformat()
         mydict['__class__'] = self.__class__.__name__
         return mydict
+
