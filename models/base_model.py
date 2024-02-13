@@ -9,7 +9,7 @@ from datetime import datetime
 class BaseModel:
     '''The baseModel class'''
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         '''Initiation of the base class
         '''
 
@@ -30,10 +30,8 @@ class BaseModel:
     def to_dict(self):
         '''Returns a dictionary'''
 
-        mydict = {
-            "id": self.id,
-            "created_at": self.created_at.isoformat(),
-            "updated_at": self.updated_at.isoformat(),
-            "__class__": self.__class__.__name__
-        }
+        mydict = self.__dict__
+        mydict["created_at"] = self.created_at.isoformat()
+        mydict["updated_at"] = self.updated_at.isoformat()
+        mydict[__class__] = self.__class__.__name__
         return mydict
