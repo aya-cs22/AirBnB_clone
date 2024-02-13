@@ -31,7 +31,10 @@ class BaseModel:
         '''Returns a dictionary'''
 
         mydict = self.__dict__.copy()
-        mydict["created_at"] = self.created_at.isoformat()
-        mydict["updated_at"] = self.updated_at.isoformat()
+        for k, v in mydict.items():
+            if k is "created_at":
+                mydict[k] = self.created_at.isoformat()
+            if k is "updated_at":
+                mydict[k] = self.updated_at.isoformat()
         mydict["__class__"] = self.__class__.__name__
         return (mydict)
