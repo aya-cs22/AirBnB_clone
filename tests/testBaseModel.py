@@ -1,4 +1,5 @@
 import unittest
+from datetime import timedelta
 from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
@@ -13,5 +14,7 @@ class TestBaseModel(unittest.TestCase):
        initialUpdate = self.myinstance.updated_at
        self.myinstance.save()
        self.assertNotEqual(initialUpdate, self.myinstance.updated_at)
+       self.assertTrue((self.myinstance.updated_at - self.myinstance.created_at) <= timedelta(seconds=1))
+
 if __name__ == '__main__':
     unittest.main()
