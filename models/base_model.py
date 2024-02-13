@@ -1,25 +1,20 @@
 #!/usr/bin/python3
-'''A module containign the base class from which all other classes will inherit'''
+'''A module containign the base class
+from which all other classes will inherit'''
 
 import uuid
 from datetime import datetime
 
+
 class BaseModel:
     '''The baseModel class'''
 
-    def __init__(self, id=None, created_at=None, updated_at=None):
+    def __init__(self, id, created_at, updated_at):
         '''Initiation of the base class
-
-        Args:
-        id (str, optional): User unique ID. Defaults to a new UUID.
-            created_at (datetime, optional): Time when the class
-            was created. Defaults to the current datetime.
-            updated_at (datetime, optional): Last update
-            time. Defaults to the current datetime.
         '''
 
         self.id = str(uuid.uuid4())
-        self.created_at =  datetime.now()
+        self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
     def __str__(self):
