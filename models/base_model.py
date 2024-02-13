@@ -33,6 +33,7 @@ class BaseModel:
         mydict = {}
         for key, value in self.__dict__.items():
             if key == "created_at" or key == "updated_at":
-                mydict[key] = value.isoformat()
+                value = value.isoformat()
+            mydict[key] = value
         mydict['__class__'] = self.__class__.__name__
         return mydict
