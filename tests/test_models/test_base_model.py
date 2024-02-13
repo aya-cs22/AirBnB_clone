@@ -17,6 +17,9 @@ class TestBaseModel(unittest.TestCase):
         initialUpdate = self.myinstance.updated_at
         self.myinstance.save()
         self.assertNotEqual(initialUpdate, self.myinstance.updated_at)
+        self.assertTrue(
+            (self.myinstance.updated_at - self.myinstance.created_at) <=
+            timedelta(seconds=1))
 
         """ Test positional args """
         with self.assertRaises(TypeError):
