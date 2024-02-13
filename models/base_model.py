@@ -29,7 +29,7 @@ class BaseModel:
 
     
     def to_dict(self):
-        '''Returns a dictionary'''
+        '''Returns a dictionary representation of the instance'''
         mydict = {}
         for key, value in self.__dict__.items():
             if key == "created_at" or key == "updated_at":
