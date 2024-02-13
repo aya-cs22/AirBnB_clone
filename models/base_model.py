@@ -34,5 +34,4 @@ class BaseModel:
         mydict["created_at"] = self.created_at.isoformat()
         mydict["updated_at"] = self.updated_at.isoformat()
         mydict["__class__"] = self.__class__.__name__
-        sorted_dict = {k: mydict[k] for k in sorted(mydict)}
-        return (sorted_dict)
+        return (mydict)
