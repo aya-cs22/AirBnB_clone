@@ -29,15 +29,11 @@ class BaseModel:
 
     def to_dict(self):
         '''Returns a dictionary representation of the instance'''
-        # mydict = {}
-        # for key, value in self.__dict__.items():
-        #     if key == "created_at" or key == "updated_at":
-        #         value = value.isoformat()
-        #     mydict[key] = value
-        # mydict['__class__'] = self.__class__.__name__
-        # return mydict
-        instance_dict = self.__dict__.copy()
-        instance_dict["__class__"] = self.__class__.__name__
-        instance_dict["created_at"] = self.created_at.isoformat()
-        instance_dict["updated_at"] = self.updated_at.isoformat()
-        return instance_dict
+        mydict = {}
+        for key, value in self.__dict__.items():
+            if key == "created_at" or key == "updated_at":
+                value = value.isoformat()
+            mydict[key] = value
+        mydict['__class__'] = self.__class__.__name__
+        return mydict
+
