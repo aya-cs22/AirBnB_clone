@@ -13,9 +13,13 @@ class BaseModel:
         '''Initiation of the base class
         '''
 
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs is not None:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+        else:
+            self.id = kwargs['id']
+            self.created_at = kwargs['created_at']
 
     def __str__(self):
         '''Beautifying the printed output'''
