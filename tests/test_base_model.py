@@ -20,5 +20,6 @@ class TestBaseModel(unittest.TestCase):
        with self.assertRaises(TypeError):
             self.myinstance.save(7)
 
+
 if __name__ == '__main__':
     unittest.main()
