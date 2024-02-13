@@ -17,7 +17,9 @@ class TestBaseModel(unittest.TestCase):
         initialUpdate = self.myinstance.updated_at
         self.myinstance.save()
         self.assertNotEqual(initialUpdate, self.myinstance.updated_at)
-        self.assertTrue((self.myinstance.updated_at - self.myinstance.created_at) <= timedelta(seconds=1))
+        self.assertTrue(
+            (self.myinstance.updated_at - self.myinstance.created_at) <=
+            timedelta(seconds=1))
 
         """ Test positional args """
         with self.assertRaises(TypeError):
@@ -33,6 +35,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(self.myinstance.id), str)
         self.assertEqual(type(self.myinstance.created_at), datetime.datetime)
         self.assertEqual(type(self.myinstance.updated_at), datetime.datetime)
+        
+    def test_str(self):
+        '''Testing __str__'''
+        self.B2.id = "0000"
+        strformatted = self.B2.__str__()
+        expected = "[BaseModel] (0000)"
+        self.assertIn(expected, strformatted)
 
 if __name__ == '__main__':
     unittest.main()
