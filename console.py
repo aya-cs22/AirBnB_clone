@@ -13,16 +13,6 @@ class HBNBCommand(cmd.Cmd):
 
         return True
 
-    def do_quit(self, line):
-        """A command interpreter to exit the program with quit"""
-
-        return True
-
-    def help_quit(self):
-        """Shows functionality of quit"""
-
-        print("Quit command to exit the program")
-
     def help_EOF(self):
         """Shows functionality of EndOfFile"""
 
