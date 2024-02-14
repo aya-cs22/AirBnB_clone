@@ -22,7 +22,7 @@ class FileStorage():
 
         newDict = BaseModel.to_dict(obj)
         ObjCN = obj.__class__.__name__
-        ObjKey = ObjCN + "." + str(newDict['id'])
+        ObjKey = ObjCN + "." + (newDict['id'])
         FileStorage.__objects[ObjKey] = newDict
 
     def save(self):
