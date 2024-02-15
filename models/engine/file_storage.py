@@ -3,7 +3,6 @@
 
 import json
 
-
 class FileStorage():
     '''A class that seialize and desrialize objects and files'''
 
@@ -16,21 +15,22 @@ class FileStorage():
         return self.__objects
 
     def new(self, obj):
-        from models.base_model import BaseModel
-        '''Converts an object to a dictionary and saves it to
-        __objects'''
+        '''Save the object to __objects'''
 
-        newDict = BaseModel.to_dict(obj)
         ObjCN = obj.__class__.__name__
-        ObjKey = ObjCN + "." + (newDict['id'])
-        FileStorage.__objects[ObjKey] = newDict
+        ObjKey = ObjCN + "." + obj.id
+        self.__objects[ObjKey] = obj
 
     def save(self):
+        from models.base_model import BaseModel
         '''serialize the dict of objs to json file'''
-
+ 
+        dictionarToSer = {}
+        for k, v in FileStorage.__objects.items():
+            dictionarToSer[k] = v.to_dict()
         with open((self.__file_path + ".json"), 'w') as jf:
-            json.dump(self.__objects, jf)
-
+            json.dump(dictionarToSer, jf)
+    
     def reload(self):
         '''deserializes the json file, if exists
         to objects'''
@@ -38,3 +38,4 @@ class FileStorage():
         if self.__file_path:
             with open((self.__file_path + ".json"), 'r') as f:
                 FileStorage.__objects = json.load(f)
+

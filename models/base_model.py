@@ -20,8 +20,11 @@ class BaseModel:
             self.updated_at = datetime.now()
             storage.new(self)
         else:
-            self.id = kwargs["id"]
-            self.created_at = kwargs["created_at"]
+            for k, v in kwargs.items():
+                if k in ["created_at", "updated_at"]:
+                    setattr(self, k, datetime.fromisoformat(v))
+                elif k != "__class__":
+                    setattr(self, k, v)
 
     def __str__(self):
         '''Beautifying the printed output'''
