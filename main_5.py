@@ -1,12 +1,25 @@
 #!/usr/bin/python3
-from models.base_model import BaseModel
-from datetime import datetime
+import os
+from models.engine.file_storage import FileStorage
 
-bm = BaseModel()
-bm.updated_at = datetime.utcnow()
-d_json = bm.to_dict()
-print(type(d_json))
-print(type(d_json['id']))
-print(type(d_json['created_at']))
-print(type(d_json['__class__']))
-print(d_json['__class__'])
+fs = FileStorage()
+print(type(fs.save))
+file_path = "file.json"
+try:
+    file_path = FileStorage._FileStorage__file_path
+except:
+    pass
+
+try:    
+    os.remove(file_path)
+except:
+    pass
+
+fs.save()
+
+print(os.path.exists(file_path))
+
+try:
+    os.remove(file_path)
+except Exception as e:
+    pass
