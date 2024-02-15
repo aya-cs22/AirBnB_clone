@@ -12,14 +12,14 @@ class FileStorage():
     def all(self):
         '''A method that returns the dictionary of objects'''
 
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         '''Save the object to __objects'''
 
         ObjCN = obj.__class__.__name__
         ObjKey = ObjCN + "." + obj.id
-        FileStorage.__objects[ObjKey] = obj
+        self.__objects[ObjKey] = obj
 
     def save(self):
         from models.base_model import BaseModel
@@ -28,7 +28,7 @@ class FileStorage():
         dictionarToSer = {}
         for k, v in FileStorage.__objects.items():
             dictionarToSer[k] = v.to_dict()
-        with open((FileStorage.__file_path), 'w') as jf:
+        with open((self.__file_path), 'w') as jf:
             json.dump(dictionarToSer, jf)
     
     def reload(self):
@@ -36,5 +36,5 @@ class FileStorage():
         to objects'''
 
         if self.__file_path:
-            with open((FileStorage.__file_path), 'r') as f:
-                FileStorage.__objects = json.load(f)
+            with open((self.__file_path), 'r') as f:
+                self.__objects = json.load(f)
